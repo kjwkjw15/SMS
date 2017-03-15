@@ -5,10 +5,11 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+       default-autowire="byName"> 
        
     <bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
@@ -17,6 +18,7 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>	
 	</bean>
+
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -26,16 +28,35 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>	<!-- org.hibernate.dialect.MySQLDialect com.yesall.ysfd.dao.YsfdSQLServerDialect -->
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>			
+				<prop key="current_session_context_class">org.springframework.orm.hibernate3.SpringSessionContext</prop>
 			</props>
 		</property>
 		<property name="packagesToScan">  
 			<list>
-				<value>ntts.action</value>
-				<value>ntts.dao</value>
 				<value>ntts.entity</value>
-				<value>ntts.srv</value>
 			</list>  
 		</property>
 	</bean>
+
+    <!-- 1. 配置 hibernate 的事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+    <!-- 2. 配置事务属性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    
+ 	<!-- 使用annotation自动注入bean,并启动相关处理注解的进程。注意下面的配置必须正确 -->  
+  	<context:component-scan base-package="ntts">
+  	  	<context:include-filter type="regex" expression="ntts\.dao\..*"/>
+	    <context:include-filter type="regex" expression="ntts\.srv\..*"/>
+	    <context:exclude-filter type="regex" expression="ntts\.action\..*"/>
+	    <context:exclude-filter type="regex" expression="ntts\.entity\..*"/>
+	</context:component-scan>     
 </beans>

@@ -4,5 +4,9 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    
+    <package name="home" extends="struts-default" namespace="/">
+    	<action name="userLogin" class="ntts.action.UserAction" method="userLogin">
+    		<result name="success">success.html</result>
+    	</action>
+    </package>
 </struts>
