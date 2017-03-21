@@ -34,6 +34,9 @@
 		<property name="packagesToScan">  
 			<list>
 				<value>ntts.entity</value>
+				<value>ntts.dao</value>
+				<value>ntts.action</value>
+				<value>ntts.service</value>
 			</list>  
 		</property>
 	</bean>
@@ -55,7 +58,7 @@
  	<!-- 使用annotation自动注入bean,并启动相关处理注解的进程。注意下面的配置必须正确 -->  
   	<context:component-scan base-package="ntts">
   	  	<context:include-filter type="regex" expression="ntts\.dao\..*"/>
-	    <context:include-filter type="regex" expression="ntts\.srv\..*"/>
+	    <context:include-filter type="regex" expression="ntts\.service\..*"/>
 	    <context:exclude-filter type="regex" expression="ntts\.action\..*"/>
 	    <context:exclude-filter type="regex" expression="ntts\.entity\..*"/>
 	</context:component-scan>     

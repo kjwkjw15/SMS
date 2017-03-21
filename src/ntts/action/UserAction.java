@@ -36,12 +36,11 @@ public class UserAction extends ActionSupport{
 
 	public String userLogin() throws Exception{
 		System.out.println("fuck1");
-		User user=userService.userLogin(username,password);
-		if (user!=null) {
-			//System.out.print(list.get(0));
-			return "success";
-		}
-		return "fail";
+		System.out.println(username);
+		System.out.println(password);
+		System.out.println(userService);
+		String result=userService.userCreate(username,password);
+		return result;
 		//System.out.println("fuck");
 	}
 }
