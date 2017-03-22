@@ -2,6 +2,8 @@ package ntts.entity;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -35,7 +37,7 @@ public class User {
 	}
 	
 	public User(){
-		System.out.println("fuck");
+		System.out.println("fuck User");
 	}
 	@Override
 	public String toString() {

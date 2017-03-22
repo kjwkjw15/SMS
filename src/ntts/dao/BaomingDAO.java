@@ -10,7 +10,7 @@ import ntts.entity.User;
 @Repository
 public class BaomingDAO extends HibernateDaoSupport{
 	public BaomingDAO(){
-		System.out.println("fuck DAO");
+		System.out.println("fuck BaomingDAO");
 	}
 
 	public User userQuery(String name,String pass){

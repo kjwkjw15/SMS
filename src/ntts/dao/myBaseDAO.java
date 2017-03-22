@@ -1,6 +1,7 @@
 package ntts.dao;
 
 import java.lang.reflect.ParameterizedType;
+
 import java.lang.reflect.Type;
 
 import javax.annotation.Resource;
@@ -9,14 +10,26 @@ import org.hibernate.Query;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository("myBaseDAO")
 public class myBaseDAO<T> {
 	private Class<T> entityClazz; 
 	@Resource
 	private SessionFactory sessionFactory; 
-	Session getSession() { 
+/*	@Resource
+	private HibernateTransactionManager htm;*/
+	private Session getSession() { 
 		//return this.sessionFactory.openSession();  
-		return this.sessionFactory.getCurrentSession();
+		return sessionFactory.getCurrentSession();
+	}
+	
+	public myBaseDAO(){
+		System.out.println("fuck myBaesDAO");
+		//System.out.println(sessionFactory.getCurrentSession());
 	}
 	
 /*	public myBaseDAO(){
@@ -28,18 +41,23 @@ public class myBaseDAO<T> {
         }  
 	}*/
 	
+
 	  
 /*    public void setSessionFactory(SessionFactory sessionFactory) {  
         this.sessionFactory = sessionFactory;  
     }*/
+	
+	public void insert(T entity) {
+		System.out.println(sessionFactory);
+		System.out.println(this.getSession());
+		this.getSession().save(entity);  
+	}
 
-	public void delete(T entity) {
+/*	public void delete(T entity) {
 		this.getSession().delete(entity);  
 	}
 
-	public void insert(T entity) {
-		this.getSession().save(entity);  
-	}
+
 
 	public void update(T entity) {
 		this.getSession().update(entity);  
@@ -47,5 +65,5 @@ public class myBaseDAO<T> {
 	
 	public void saveOrUpdate(T entity) {  
 		this.getSession().saveOrUpdate(entity);  
-	}  
+	}  */
 }
