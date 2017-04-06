@@ -46,7 +46,7 @@ public class UserAction extends ActionSupport{
 		this.password = password;
 	}
 
-	public String userLogin() throws Exception{
+	public String userRegister() throws Exception{
 		System.out.println("fuck1");
 		System.out.println(username);
 		System.out.println(password);
@@ -55,5 +55,10 @@ public class UserAction extends ActionSupport{
 		String result=userService.userCreate(username,password);
 		return result;
 		//System.out.println("fuck");
+	}
+	
+	public String userLogin() throws Exception{
+		String result=userService.userLogin(username,password);
+		return result;
 	}
 }

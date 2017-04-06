@@ -29,6 +29,10 @@ public class UserService {
 		myBaseDAO.insert(user);
 		return "success";
 	}
+	public String userLogin(String name,String pass){
+		User user = myBaseDAO.findUser(name,pass);
+		return user!=null?"success":"error";
+	}
 /*	public User userLogin(String name,String pass){
 		return userDAO.userLogin(name, pass);
 	}*/

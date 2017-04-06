@@ -5,8 +5,13 @@
 
 <struts>
     <package name="home" extends="struts-default" namespace="/">
+    	<action name="userRegister" class="ntts.action.UserAction" method="userRegister">
+    		<result name="success">success_register.html</result>
+    		<result name="error">success_register.html</result>
+    	</action>
     	<action name="userLogin" class="ntts.action.UserAction" method="userLogin">
-    		<result name="success">success.html</result>
+    		<result name="success">success_login.html</result>
+    		<result name="error">success_login.html</result>
     	</action>
     </package>
 </struts>
