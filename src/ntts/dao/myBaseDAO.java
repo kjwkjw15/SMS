@@ -64,7 +64,7 @@ public class myBaseDAO<T> {
 		query.setParameter(0, name);
 		query.setParameter(1, pass);
 		List<User> list=query.list();
-		
+		//System.out.println(list.get(0).getUserName());
 		return list.size()==1?list.get(0):null;
 	}
 
