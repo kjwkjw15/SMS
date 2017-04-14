@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
 
+@Component("user")
 @Entity
 @Table(name="user")
 public class User {
@@ -41,11 +42,15 @@ public class User {
 	}
 	@Override
 	public String toString() {
+		System.out.println("====toString====");
 		return "User [id=" + id + ", userName=" + userName + ", passWord=" + passWord + "]";
 	}
 	public User(String userName, String passWord) {
 		this.userName = userName;
 		this.passWord = passWord;
+	}
+	public void fuck(){
+		System.out.println("====fuck====");
 	}
 	
 }

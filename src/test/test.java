@@ -8,8 +8,13 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import net.sf.json.JSONArray;
+import ntts.entity.User;
+
 import org.apache.commons.lang.exception.*;
 
 public class test {
@@ -46,5 +51,16 @@ public class test {
 		System.out.println(jsonArray.toString());
 		System.out.println("fuck");
 	}
+	
+
+	@Test
+    public void inteceptorTest(){  
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) ctx.getBean("user");
+		System.out.println("===========");
+		user.fuck();
+	    System.out.println(user.toString());
+
+	} 
 
 }

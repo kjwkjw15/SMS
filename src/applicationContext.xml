@@ -57,5 +57,13 @@
         </tx:attributes>
     </tx:advice>
 
-
+	<aop:config>
+		<aop:aspect id="time" ref="timeHandler">
+			<aop:pointcut id="addAllMethod" expression="execution(* ntts.entity.*.*(..))" />
+			<aop:before method="printTime" pointcut-ref="addAllMethod" />
+			<aop:after method="printTime" pointcut-ref="addAllMethod" />
+		</aop:aspect>
+	</aop:config>
+	<bean id="timeHandler" class="ntts.aop.TimeHandler"/>
+	
 </beans>
