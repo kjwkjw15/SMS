@@ -1,10 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="js/jquery-3.2.0.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+	<link href="css/home.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	success Login!
+
+    <div>
+    	<form action="addBaseInfo" method="post">
+    		姓名：<input id="stuName" name="baseInfo.stuName"><br/>
+			身份证：<input id="idCard" name="baseInfo.idCard"><br/>
+			出生年月：<input id="birthday" name="baseInfo.birthday"><br/>
+			年龄：<input id="age" name="baseInfo.age"><br/>
+			性别：<input id="sex1" name="baseInfo.sex" type="radio" value="male">男
+				  <input id="sex2" name="baseInfo.sex" type="radio" value="female">女<br/>
+			学历：<select id="education" name="baseInfo.education">
+					<option value="benke" selected>本科</option>					
+					<option value="zhuanke">专科</option>
+					<option value="gaozhong">高中</option>
+					<option value="chuzhong">初中</option>
+				  </select><br/>
+			单位：<input id="company" name="baseInfo.company"><br/>
+			手机号：<input id="phone" name="baseInfo.phone"><br/>
+			<input type="submit" value="录入"><br/>
+    	</form>
+    </div>
+    <br/>
+	<div>
+   	<table id="datagrid" class="table table-striped table-bordered table-hover table-condensed" title="学员基本信息 "
+		data-options="singleSelect:true,
+					collapsible:false,
+					method:'get'" >
+		<thead>
+			<tr>
+				<th data-options="field:'stuName',width:100,align:'center'">姓名</th>
+				<th data-options="field:'idCard',width:150,align:'center'">身份证</th>
+				<th data-options="field:'birthday',width:150,align:'center'">出生年月</th>
+				<th data-options="field:'age',width:120,align:'center'">年龄</th>
+				<th data-options="field:'sex',width:120,align:'center'">性别</th>
+				<th data-options="field:'companyName',width:100,align:'center'">单位</th>
+				<th data-options="field:'phone',width:120,align:'center'">电话</th>
+				<th data-options="field:'writedate',width:120,align:'center'">录入日期</th>
+				<th data-options="field:'Oper1',width:66,align:'center',formatter:rowFormater">操作</th>
+			</tr>
+		</thead>
+	</table>
+   </div>
+	<!-- <nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+	        	<a class="navbar-brand" href="#">菜鸟</a>
+	    	</div>
+	    	<div>
+	    		<ul class="nav navbar-nav">
+	    			<li class="active"><a href="#">iOS</a></li>
+	    			<li><a href="#">SVN</a></li>
+	    			<li class="dropdown">
+	    				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                    Java
+		                    <b class="caret"></b>
+		                </a>
+		                <ul class="dropdown-menu">
+		                    <li><a href="#">jmeter</a></li>
+		                    <li><a href="#">EJB</a></li>
+		                    <li><a href="#">Jasper Report</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href="#">分离的链接</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href="#">另一个分离的链接</a></li>
+		                </ul>
+	    			</li>
+	    		</ul>
+	    	</div>
+    	</div>
+	</nav> -->
+	
 </body>
 </html>

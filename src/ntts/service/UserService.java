@@ -14,24 +14,28 @@ import ntts.dao.*;
 @Service("userService")
 public class UserService {
 	@Autowired
-	private myBaseDAO myBaseDAO;
+	private UserDAO userDAO;
 /*	public UserDAO getUserDAO() {
 		return userDAO;
 	}*/
 	public UserService(){
 		System.out.println("fuck service");
 	}
-	public String userCreate(String name,String pass){
-		System.out.println("fuck2");
+	public String createUser(String name,String pass){
 		User user=new User();
 		user.setUserName(name);
 		user.setPassWord(pass);
-		myBaseDAO.insert(user);
+		userDAO.addUser(user);
 		return "success";
 	}
 	public String userLogin(String name,String pass){
-		User user = myBaseDAO.findUser(name,pass);
+		User user = userDAO.findUser(name,pass);
 		return user!=null?"success":"error";
+	}
+	
+	public String delUser(String name,String pass){
+		userDAO.delUser(name,pass);
+		return "success";
 	}
 /*	public User userLogin(String name,String pass){
 		return userDAO.userLogin(name, pass);

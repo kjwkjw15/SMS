@@ -12,35 +12,34 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import ntts.entity.User;
+import ntts.entity.BaseInfo;
 import ntts.dao.myBaseDAO;
 
-@Repository("userDAO")
-public class UserDAO extends myBaseDAO<User> {
+@Repository("baseInfoDAO")
+public class BaseInfoDAO extends myBaseDAO<BaseInfo> {
 	@Resource
 	private SessionFactory sessionFactory; 
 	private Session getSession() { 
 		//return this.sessionFactory.openSession();  
 		return sessionFactory.getCurrentSession();
 	}
-	public UserDAO(){
+	public BaseInfoDAO(){
 		System.out.println("fuck userDAO");
 	}
 	
-	public void addUser(User entity) {
-		super.insert(entity);  
+	public void addBaseInfo(BaseInfo entity) {
+		insert(entity);  
 	}
-	public void delUser(String name,String pass) {
-		User user = findUser(name,pass);
-		super.delete(user);
+	public void delBaseInfo(String idcard) {
+		BaseInfo baseInfo = findBaseInfo(idcard);
+		delete(baseInfo);
 	}
-	public User findUser(String name,String pass) {
+	public BaseInfo findBaseInfo(String idcard) {
 		Session s = this.getSession();
-		String hql = "from User where userName=? and passWord=?";
+		String hql = "from BaseInfo where idCard=?";
 		Query query = s.createQuery(hql);
-		query.setParameter(0, name);
-		query.setParameter(1, pass);
-		List<User> list=query.list();
+		query.setParameter(0, idcard);
+		List<BaseInfo> list=query.list();
 		//System.out.println(list.get(0).getUserName());
 		return list.size()==1?list.get(0):null;
 	}

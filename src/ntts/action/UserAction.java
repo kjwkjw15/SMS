@@ -52,7 +52,7 @@ public class UserAction extends ActionSupport{
 		System.out.println(password);
 		//UserService userService=new UserService();
 		System.out.println(userService);
-		String result=userService.userCreate(username,password);
+		String result=userService.createUser(username,password);
 		return result;
 		//System.out.println("fuck");
 	}
@@ -61,4 +61,9 @@ public class UserAction extends ActionSupport{
 		String result=userService.userLogin(username,password);
 		return result;
 	}
+	public String userDel() throws Exception{
+		String result=userService.delUser(username,password);
+		return result;
+	}
+	
 }
