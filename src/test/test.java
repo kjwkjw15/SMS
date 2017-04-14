@@ -9,8 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import net.sf.json.JSONArray;
+import org.apache.commons.lang.exception.*;
+
 public class test {
-	@BeforeClass
+/*	@BeforeClass
     public static void enter()
 	{
         System.out.println("进来了！");
@@ -31,15 +34,16 @@ public class test {
     public static void leave()
 	{
         System.out.println("离开了！");
-    }
+    }*/
 	@Test
-	public static void main(String[] args) {
+	public void fuck() {
+		
 		// TODO Auto-generated method stub
-/*		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
 		list.add("abc");
 		list.add("123");
-		net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray.fromObject(list);
-		System.out.println(jsonArray.toString());*/
+		JSONArray jsonArray = net.sf.json.JSONArray.fromObject(list);
+		System.out.println(jsonArray.toString());
 		System.out.println("fuck");
 	}
 
