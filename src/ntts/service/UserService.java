@@ -25,7 +25,7 @@ public class UserService {
 		User user=new User();
 		user.setUserName(name);
 		user.setPassWord(pass);
-		userDAO.addUser(user);
+		userDAO.insert(user);
 		return "success";
 	}
 	public String userLogin(String name,String pass){

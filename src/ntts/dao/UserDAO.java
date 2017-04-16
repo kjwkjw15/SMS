@@ -27,9 +27,6 @@ public class UserDAO extends myBaseDAO<User> {
 		System.out.println("fuck userDAO");
 	}
 	
-	public void addUser(User entity) {
-		super.insert(entity);  
-	}
 	public void delUser(String name,String pass) {
 		User user = findUser(name,pass);
 		super.delete(user);
