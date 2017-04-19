@@ -1,16 +1,24 @@
 package ntts.action;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import ntts.entity.User;
 import ntts.service.UserService;
+import org.apache.struts2.ServletActionContext;
 
 
 @Component
@@ -26,9 +34,15 @@ public class UserAction extends ActionSupport{
 
 	private String username;
 	private String password;
-	
+	private String loginJsonObj;
 	public UserAction(){
 		System.out.println("fuck action");
+	}
+	public String getLoginJsonObj() {
+		return loginJsonObj;
+	}
+	public void setLoginJsonObj(String loginJsonObj) {
+		this.loginJsonObj = loginJsonObj;
 	}
 	public String getUsername() {
 		return username;
@@ -58,7 +72,20 @@ public class UserAction extends ActionSupport{
 	}
 	
 	public String userLogin() throws Exception{
-		String result=userService.userLogin(username,password);
+		//this.result=userService.userLogin(username,password);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		username = request.getParameter("name");
+		password = request.getParameter("password");
+		
+		String result = userService.userLogin(username,password);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name","kjw,"+username);
+		map.put("password","123,"+password);
+		JSONObject obj = JSONObject.fromObject(map);
+		loginJsonObj=obj.toString();
+		
 		return result;
 	}
 	public String userDel() throws Exception{

@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录</title>
-<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css"> -->
+<script src="res/js/jquery-3.2.0.min.js"></script>
+<script src="res/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="res/css/bootstrap.min.css" />
 <link rel="stylesheet" href="res/css/style.css" />
-<script src="res/js/bootstrap.min.js"></script>
+<!-- <script src="res/js/bootstrap.min.js"></script> -->
 </head>
 <body>
-	<form action="userLogin" method="post" id="frm_login">
+	<form method="post" id="frm_login">
     	<div class="mycenter">
             <div class="mysign">
                 <div class="col-lg-11 text-center text-info">
@@ -35,14 +35,25 @@
 	<script type="text/javascript">
 	$("#divLogin").click(function(){
 		$.ajax({
-					   url: "userLogin",
+					   url: "userLogin.action",
 					   type: 'POST',
-					   data: $(document.frm_login).serialize(),
+					   data:{
+						   name:$("input[name=username]").val(),
+						   password:$("input[name=password]").val()
+					   },
+					   dataType:'json',
 					   success: function(data){
-					   		window.location.href = "loginSuccess.jsp";
+						   alert("登录成功，欢迎"+$("input[name=username]").val());
+						   $(location).attr('href', 'success_login.html');
+						   /*$(location).prop('href','success_login.html');
+ 						  	$(window).attr('location','success_login.html');
+						    */
+					    /* var obj=JSON.parse(data);
+ 						   alert(obj.name);
+						   alert(obj.password); */
 					   },
 					   error: function(data){
-					   		alert("意外错误："+data);
+					   		alert("用户或密码有误。 ");
 					   }
 				});
 			
