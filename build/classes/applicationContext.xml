@@ -57,13 +57,13 @@
         </tx:attributes>
     </tx:advice>
 
-	<aop:config>
-		<aop:aspect id="time" ref="timeHandler">
-			<aop:pointcut id="addAllMethod" expression="execution(* ntts.entity.*.*(..))" />
-			<aop:before method="printTime" pointcut-ref="addAllMethod" />
-			<aop:after method="printTime" pointcut-ref="addAllMethod" />
+ 	<aop:config>
+		<aop:aspect id="log" ref="logHandler">
+			<aop:pointcut id="addAllMethod" expression="execution(* ntts.*.*.*(..))" />
+			<aop:before method="printLog" pointcut-ref="addAllMethod" />
+			<aop:after-throwing method="throwException" pointcut-ref="addAllMethod" throwing="e"/>
 		</aop:aspect>
 	</aop:config>
-	<bean id="timeHandler" class="ntts.aop.TimeHandler"/>
+	<bean id="logHandler" class="ntts.aop.LogHandler"/>
 	
 </beans>

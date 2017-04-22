@@ -10,13 +10,13 @@
             
 
 
-<!-- <aop:config>
-	<aop:aspect id="time" ref="timeHandler">
-		<aop:pointcut id="addAllMethod" expression="execution(* com.xrq.aop.HelloWorld.*(..))" />
-		<aop:before method="printTime" pointcut-ref="addAllMethod" />
-		<aop:after method="printTime" pointcut-ref="addAllMethod" />
-	</aop:aspect>
-</aop:config> -->
+<!-- 	<aop:config>
+		<aop:aspect id="time" ref="timeHandler">
+			<aop:pointcut id="addAllMethod" expression="execution(* ntts.entity.*.*(..))" />
+			<aop:before method="printTime" pointcut-ref="addAllMethod" />
+			<aop:after method="printTime" pointcut-ref="addAllMethod" />
+		</aop:aspect>
+	</aop:config>    -->
 
 
 </beans>

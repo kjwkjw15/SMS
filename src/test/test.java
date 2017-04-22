@@ -1,5 +1,6 @@
 package test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class test {
 	{
         System.out.println("离开了！");
     }*/
-	@Test
+
 	public void fuck() {
 		
 		// TODO Auto-generated method stub
@@ -57,9 +58,10 @@ public class test {
     public void inteceptorTest(){  
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		User user = (User) ctx.getBean("user");
+		user.setUserName("kjw");
+		user.setId(1);
+		user.setPassWord("abc");
 		System.out.println("===========");
-		user.fuck();
-	    System.out.println(user.toString());
 
 	} 
 

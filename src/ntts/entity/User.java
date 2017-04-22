@@ -1,7 +1,10 @@
 package ntts.entity;
 
+import java.io.IOException;
+
 import javax.persistence.*;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.stereotype.Component;
 
 @Component("user")
@@ -40,7 +43,7 @@ public class User {
 	public User(){
 		System.out.println("fuck User");
 	}
-	@Override
+	
 	public String toString() {
 		System.out.println("====toString====");
 		return "User [id=" + id + ", userName=" + userName + ", passWord=" + passWord + "]";
@@ -48,9 +51,5 @@ public class User {
 	public User(String userName, String passWord) {
 		this.userName = userName;
 		this.passWord = passWord;
-	}
-	public void fuck(){
-		System.out.println("====fuck====");
-	}
-	
+	}	
 }
