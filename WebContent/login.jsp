@@ -39,7 +39,7 @@
 					   type: 'POST',
 					   data: $(document.frm_login).serialize(),
 					   success: function(data){
-					   		window.location.href = "loginSuccess.jsp";
+					   		window.location.href = "dynalist.html";
 					   },
 					   error: function(data){
 					   		alert("意外错误："+data);

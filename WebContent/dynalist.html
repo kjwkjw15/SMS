@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+	<div id="menu">a
+		<div >b
+		
+		</div>
+	</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			   url: "menuList",
+			   type: 'POST',
+			   data: "",
+			   dataType: "json",
+			   success: function(data){
+			       var list=eval(data);
+				   for (var i=0;i<list.length;i++){
+					   alert(list[i].name);
+					   //$("#menu").append(list[i].name)
+				   }
+			   },
+			   error: function(data){
+			   		alert("意外错误："+data);
+			   }
+		});
+	})
+	
+</script>
+</body>
+
+
+
+</html>

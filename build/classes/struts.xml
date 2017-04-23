@@ -4,7 +4,15 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="home" extends="struts-default" namespace="/">
+	<package name="jsonTest" extends="json-default" namespace="">
+		<action name="menuList" class="ntts.action.MenuList" method="menuList">
+    		<result type="json">
+    			<param name="root">menuList</param>
+    		</result>
+    	</action>
+	</package>
+    <package name="home" extends="struts-default" namespace="">
+    	
     	<action name="userRegister" class="ntts.action.UserAction" method="userRegister">
     		<result name="success">success_register.html</result>
     		<result name="error">success_register.html</result>

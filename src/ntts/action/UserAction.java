@@ -14,7 +14,7 @@ import ntts.service.UserService;
 
 
 @Component
-final public class UserAction extends ActionSupport implements IAction{
+public class UserAction extends ActionSupport{
 	/**
 	 * 
 	 */
