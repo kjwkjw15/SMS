@@ -20,6 +20,7 @@ public class LogHandler
     
     //切入点报错后的动作
     public void throwException(Throwable e) {
+    	
     	logger.error(e.getStackTrace()[0]);
     }
 }

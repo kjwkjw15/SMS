@@ -57,6 +57,8 @@
         </tx:attributes>
     </tx:advice>
 
+	<!-- 添加这个配置，解决action无法由spring代理问题  -->
+	<aop:aspectj-autoproxy proxy-target-class="false" />
  	<aop:config>
 		<aop:aspect id="log" ref="logHandler">
 			<aop:pointcut id="addAllMethod" expression="execution(* ntts.*.*.*(..))" />

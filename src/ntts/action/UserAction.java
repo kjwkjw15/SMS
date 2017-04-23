@@ -14,7 +14,11 @@ import ntts.service.UserService;
 
 
 @Component
-public class UserAction extends ActionSupport{
+final public class UserAction extends ActionSupport implements IAction{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Resource(name="userService")
 	private UserService userService;
 	public UserService getUserService() {
@@ -53,7 +57,7 @@ public class UserAction extends ActionSupport{
 		//UserService userService=new UserService();
 		System.out.println(userService);
 		String result=userService.createUser(username,password);
-		return result;
+		return "success";
 		//System.out.println("fuck");
 	}
 	
