@@ -10,6 +10,11 @@
     			<param name="root">menuList</param>
     		</result>
     	</action>
+    	<action name="userLogin" class="ntts.action.UserAction" method="userLogin">
+			<result type="json">
+				<param name="root">loginJsonObj</param>
+		 	</result>
+    	</action>
 	</package>
     <package name="home" extends="struts-default" namespace="">
     	

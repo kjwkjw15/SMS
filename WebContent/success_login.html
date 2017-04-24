@@ -2,13 +2,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script src="js/jquery-3.2.0.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
-	<link href="css/home.css" type="text/css" rel="stylesheet" />
+	<script src="res/js/jquery-3.2.0.min.js"></script>
+	<script src="res/js/bootstrap.js"></script>
+	<link href="res/css/bootstrap.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-
     <div>
     	<form action="addBaseInfo" method="post">
     		姓名：<input id="stuName" name="baseInfo.stuName"><br/>
@@ -25,7 +23,7 @@
 				  </select><br/>
 			单位：<input id="company" name="baseInfo.company"><br/>
 			手机号：<input id="phone" name="baseInfo.phone"><br/>
-			<input type="submit" value="录入"><br/>
+			<input type="button" id="subButton" value="录入"><br/>
     	</form>
     </div>
     <br/>
@@ -49,6 +47,16 @@
 		</thead>
 	</table>
    </div>
+   <script type="text/javascript">
+   		$("#subButton").click(function(){
+   			alert($("input[id=idCard]").val());
+   			idcard=$("input[id=idCard]").val();
+   			
+   		})
+   		
+   
+   		
+   </script>
 	<!-- <nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
