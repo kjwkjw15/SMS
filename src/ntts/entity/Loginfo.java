@@ -45,5 +45,7 @@ public class Loginfo {
 	public void setLogDate(Date logDate) {
 		this.logDate = logDate;
 	}
-	
+	public void Loginfo(){
+		System.out.println("fuck loginfo");
+	}
 }

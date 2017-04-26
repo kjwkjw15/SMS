@@ -7,9 +7,7 @@ import javax.persistence.*;
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.stereotype.Component;
 
-@Component("user")
 @Entity
-@Table(name="user")
 public class User {
 	
 	@Id
@@ -25,14 +23,12 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	   @Column(name="username")
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	   @Column(name="password")
 	public String getPassWord() {
 		return passWord;
 	}

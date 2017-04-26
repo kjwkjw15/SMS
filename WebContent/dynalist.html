@@ -12,6 +12,7 @@
 		
 		</div>
 	</div>
+	
 
 
 <script type="text/javascript">
@@ -24,7 +25,7 @@
 			   success: function(data){
 			       var list=eval(data);
 				   for (var i=0;i<list.length;i++){
-					   alert(list[i].name);
+					   alert(list[i].menuId + list[i].menuName);
 					   //$("#menu").append(list[i].name)
 				   }
 			   },
@@ -34,6 +35,141 @@
 		});
 	})
 	
+	//点击filerole下的选择按钮 触发的选择下拉树 开始
+function fileRoleClickFunction() {
+    var zNodesFile = [];
+
+    function onNodeClick(e, treeId, treeNode) {
+        
+
+    }
+
+    function getCheckedNodes(e) {
+        var ids = $(e.target).parent().parent()[0].id;
+        var zTree = $.fn.zTree.getZTreeObj(ids);
+        var nodes = zTree.getCheckedNodes();
+
+        var id = "";
+        var name = "";
+        nodes.sort(function compare(a, b) {
+            return a.id - b.id;
+        });
+        for (var i = 0, l = nodes.length; i < l; i++) {
+            id += nodes[i].id + ",";
+            name += nodes[i].name + ",";
+        }
+        if (id.length > 0) id = id.substring(0, id.length - 1);
+        if (name.length > 0) name = name.substring(0, name.length - 1);
+        var idName = $(e.target).parent().parent().parent().siblings()[1].id;
+        var idId = $(e.target).parent().parent().parent().siblings()[0].id;
+        $('#' + idName).val(name);
+        $('#' + idId).val(id);
+
+        //如果 选中的是主数据校验 则进行ajax判断 开始
+        var nodesData = $('#' + idName).val();
+        if(nodesData.indexOf("主数据校检") != -1 ){
+            var filedName = $('#' + idName).parent().parent().children()[0].innerHTML;
+            $.ajax({
+                url:Vm.url+'/audit/isMainDataField',
+                // url:'http://192.178.106.107:3000/mock/test',
+                type:'POST',
+                data:{
+                    dataBaseName:Vm.dataBase,
+                    tableName:Vm.statement,
+                    fieldName:filedName
+                }
+            })
+                .then(function(data){
+                    console.log('isMainDataField:'+data);
+                    if(data == "true"){
+                        //显示对勾 说明 能够提交
+                        $('#' + idName).parent().next().next().children('.green').addClass('active');
+                        $('#' + idName).parent().next().next().children('.red').removeClass('active');
+
+                    }
+                    else{
+                        //不能提交
+                        $('#' + idName).parent().next().next().children('.green').removeClass('active');
+                        $('#' + idName).parent().next().next().children('.red').addClass('active');
+
+                    }
+                },function(data){
+
+                })
+        }
+        else{
+            $('#' + idName).parent().next().next().children('.red').removeClass('active');
+        }
+        //如果 选中的是主数据校验 则进行ajax判断 结束
+    }
+
+    function onNodeCheck(e, treeId, treeNode) {
+
+        getCheckedNodes(e);
+    }
+
+    var setting = {
+        check: {
+            enable: true, //每个节点上是否显示 CheckBox
+            chkboxType: {"N": "", "N": ""} //选中父选中子，选中子的时候也选中父,取消的时候也关联
+        },
+        view: {
+            dblClickExpand: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: onNodeClick,
+            onCheck: onNodeCheck
+        }
+    };
+    $.ajax({
+        type: "GET",
+        url: Vm.url + '/audit/getRuleList',
+        success: function (data) {
+            console.log(data);
+            // var data = [
+            //     {id:'01',name:'123'},{id:'02',name:'1234',parentID:'1'}
+            // ];
+            console.log('znodesfiledata:' + data);
+            for (var i = 0; i < data.length; i++) {
+                // if (data[i].parentID = '' || data[i].parentID == null) {
+                zNodesFile.push({id: data[i].id, pId: "0", name: data[i].name});
+                // } else {
+                //     zNodesFile.push({id:data[i].id, pId:data[i].parentID, name: data[i].name});
+                // }
+            }
+            console.log('zNodesFile:' + zNodesFile);
+
+
+            for (var i = 0; i < $('.menuBtn').length; i++) {
+                (function (i) {
+                    $('.menuBtn')[i].onclick = function () {
+                        console.log(i);
+                        var content = $(this).next()[0].id;
+                        console.log('content:' + content)
+                        var clickArea = $(this).context.id;
+                        Util.treeToggleShow(content, clickArea);
+
+                    }
+                    var tree = $($('.menuBtn')[i].parentNode).children('div').children()[0].id;
+                    $.fn.zTree.init($("#" + tree), setting, zNodesFile);
+
+                })(i);
+
+            }
+
+
+            // $.fn.zTree.init($(".tree"), setting, zNodesFile);
+
+        }
+    });
+}
+//点击filerole下的选择按钮 触发的选择下拉树 结束
+
 </script>
 </body>
 

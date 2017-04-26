@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import ntts.entity.BaseInfo;
-import ntts.dao.myBaseDAO;
+import ntts.dao.MyBaseDAO;
 
 @Repository("baseInfoDAO")
-public class BaseInfoDAO extends myBaseDAO<BaseInfo> {
+public class BaseInfoDAO extends MyBaseDAO<BaseInfo> {
 	@Resource
 	private SessionFactory sessionFactory; 
 	private Session getSession() { 
