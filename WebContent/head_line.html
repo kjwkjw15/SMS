@@ -2,14 +2,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="res/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="res/css/bootstrap.min.css" />
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-top">
         <a class="navbar-brand" href="#">教务管理系统</a>
         <ul class="nav navbar-nav">
-          	<li class="active"><a href="#">FUCK</a></li>
-        	<li><a href="#">班级管理</a></li>
+          	<li class="active"><a href="#">首页</a></li>
+        	<li class="dropdown">
+        		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					班级管理1111 
+					<b class="caret"></b>
+				</a>
+        		<ul class="dropdown-menu navbar-nav navbar-inverse">
+        			<li><a href="#">班级查询</a></li>
+					<li><a href="#">组班</a></li>
+        		</ul>
+       		</li>
         	<li><a href="#">证书管理</a></li>   
         </ul>
 		<ul class="nav navbar-nav pull-right">
@@ -22,5 +34,27 @@
             </li>
         </ul>
     </div>
+    
+    <script>
+    	$(document).ready(function(){
+		$.ajax({
+			   url: "menuList",
+			   type: 'POST',
+			   data: "",
+			   dataType: "json",
+			   success: function(data){
+			       var list=eval(data);
+				   for (var i=0;i<list.length;i++){
+					   //document.write("<div>"+list[i].menuName+"</div>");
+					   //$("#menu").append(list[i].name)
+				   }
+			   },
+			   error: function(data){
+			   		alert("意外错误："+data);
+			   }
+			});
+		})
+    </script>
+    
 </body>
 </html>
