@@ -12,7 +12,7 @@
        default-autowire="byName"> 
        
     <!-- <context:annotation-config/> -->
-    <context:component-scan base-package="ntts"/>
+    <context:component-scan base-package="com.ty.sms"/>
     <!-- <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/> -->
     <!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> --> 
     <bean id="dataSource"
@@ -38,7 +38,7 @@
 		</property>
 		<property name="packagesToScan">  
 			<list>
-				<value>ntts.entity</value>
+				<value>com.ty.sms.entity</value>
 			</list>  
 		</property>
 	</bean>
@@ -61,11 +61,11 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
  	<aop:config>
 		<aop:aspect id="log" ref="logHandler">
-			<aop:pointcut id="addAllMethod" expression="execution(* ntts.*.*.*(..))" />
+			<aop:pointcut id="addAllMethod" expression="execution(* com.ty.sms.*.*.*(..))" />
 			<aop:before method="printLog" pointcut-ref="addAllMethod" />
 			<aop:after-throwing method="throwException" pointcut-ref="addAllMethod" throwing="e"/>
 		</aop:aspect>
 	</aop:config>
-	<bean id="logHandler" class="ntts.aop.LogHandler"/>
+	<bean id="logHandler" class="com.ty.sms.aop.LogHandler"/>
 	
 </beans>

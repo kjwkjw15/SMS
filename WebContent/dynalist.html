@@ -25,7 +25,7 @@
 			   success: function(data){
 			       var list=eval(data);
 				   for (var i=0;i<list.length;i++){
-					   alert(list[i].menuId + list[i].menuName);
+					   document.write("<div>"+list[i].menuName+"</div>");
 					   //$("#menu").append(list[i].name)
 				   }
 			   },
