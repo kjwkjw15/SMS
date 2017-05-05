@@ -6,7 +6,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
@@ -18,6 +18,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/struts-2.5.10"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/json-lib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/my_web_lib"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
